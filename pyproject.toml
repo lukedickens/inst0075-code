@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inst0075-code"
+version = "0.1.0"
+description = "Support code for the INST0075 Machine Learning Models module at UCL."
+authors = [
+    {name = "Luke Dickens", email = "l.dickens@ucl.ac.uk"}
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "ipykernel"
+]
+requires-python = ">=3.8"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["inst0075*"]

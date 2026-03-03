@@ -1,6 +1,6 @@
 import numpy as np
 
-from fomlads.rl.environment.model.mdp import MDP
+from inst0075.rl.environment.model.mdp import MDP
 
 
 def stair_climbing_mdp():
@@ -24,7 +24,7 @@ def stair_climbing_mdp():
 
     # Array indicating starting state distribution
     #            P,   1,   2,   3,   4,   5,    G   <-- STATES 
-    initial = [  0,   0,   0,   1,   0,   0,   0]
+    initial = np.array([  0,   0,   0,   1,   0,   0,   0], dtype=bool)
 
     # the transition function
     def stair_climbing_transition_function(s, a, s_):

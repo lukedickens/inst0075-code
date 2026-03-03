@@ -38,12 +38,13 @@ def grid_world1(height=None, width=None):
         reward_special_locs, reward_special_vals, init_locs, init_weights)
     return gw
 
-def grid_world2():
+def grid_world2(action_effects=None):
     # number of rows, columns in gridworld
     shape = (3,4)
     # probability of respectively moving along 0 degrees, 90 degrees
     # 180 degrees or 270 degrees from desired direction.
-    action_effects = [0.8, 0.1, 0.0, 0.1]
+    if action_effects is None:
+        action_effects = [0.8, 0.1, 0.0, 0.1]
     # obstacles block movement
     obstacles = [(1,1)]
     # absorbing/terminal locations
@@ -80,7 +81,6 @@ def grid_world3(height=None, width=None):
     obstacles = []
     # absorbing/terminal locations
     absorbing_locs = [ (height-1,j) for j in range(1,width)]
-    print("absorbing_locs = %r" % (absorbing_locs,))
     # the default reward
     reward_default = -1
     # locations with non-default rewards

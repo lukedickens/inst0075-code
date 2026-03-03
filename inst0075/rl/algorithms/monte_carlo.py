@@ -2,9 +2,9 @@ import numpy as np
 import copy
 import matplotlib.pyplot as plt
 
-from fomlads.rl.environment.states_and_actions import get_unbiased_policy
-from fomlads.rl.environment.states_and_actions import get_greedy_policy
-from fomlads.rl.environment.states_and_actions import get_epsilon_greedy_policy
+from inst0075.rl.environment.states_and_actions import get_unbiased_policy
+from inst0075.rl.environment.states_and_actions import get_greedy_policy
+from inst0075.rl.environment.states_and_actions import get_epsilon_greedy_policy
 
 def monte_carlo_evaluation(
         env, gamma, policy, num_episodes, max_steps=None, default_value=0):

@@ -344,7 +344,8 @@ class GridWorld(MDP):
       return True
 
     def visualise(
-            self, labels=None, suppress_absorbing=False, fontsize=16):
+            self, labels=None, suppress_absorbing=False, fontsize=16,
+            title=None):
         """
         Plots a visualisation of a grid world. Cells are coloured according
         to type good absorbing (green), bad absorbing (red), valid (blue), and
@@ -424,6 +425,8 @@ class GridWorld(MDP):
         ax.grid(
             which='major', axis='both', linestyle='-', color=c_background,
             linewidth=2)
+        if title:
+            ax.set_title(title)
         #
         return fig, ax
 

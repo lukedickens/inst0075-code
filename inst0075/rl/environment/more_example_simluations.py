@@ -1,6 +1,6 @@
 import numpy as np
 
-from fomlads.rl.environment.simulation import Simulation
+from inst0075.rl.environment.simulation import Simulation
 
 class ForagingSim(Simulation):
 
@@ -23,7 +23,7 @@ class ForagingSim(Simulation):
         # check that you don't move off grid
         #change location of agent
         if action == 0:
-            self.agent_loc[1] = np.min(self.agent_loc[1]+1,self.width-1
+            self.agent_loc[1] = np.min(self.agent_loc[1]+1,self.width-1)
         # do for other directions...
         if self.food_grid[self.agent_loc] == 1:
             reward = 1

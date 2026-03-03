@@ -2,11 +2,11 @@ import numpy as np
 import copy
 import matplotlib.pyplot as plt
 
-from fomlads.rl.environment.states_and_actions import choose_from_policy
+from inst0075.rl.environment.states_and_actions import choose_from_policy
 
-from fomlads.rl.environment.states_and_actions import get_unbiased_policy
-from fomlads.rl.environment.states_and_actions import get_greedy_policy
-from fomlads.rl.environment.states_and_actions import get_epsilon_greedy_policy
+from inst0075.rl.environment.states_and_actions import get_unbiased_policy
+from inst0075.rl.environment.states_and_actions import get_greedy_policy
+from inst0075.rl.environment.states_and_actions import get_epsilon_greedy_policy
 
 def temporal_difference_evaluation(
         env, gamma, alpha, policy, num_episodes, max_steps=np.inf,

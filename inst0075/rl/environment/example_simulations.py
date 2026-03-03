@@ -1,6 +1,9 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-from fomlads.rl.environment.simulation import Simulation
+from inst0075.rl.environment.simulation import Simulation
+
+
 
 class SimpleQueuingSim(Simulation):
     """
@@ -8,8 +11,10 @@ class SimpleQueuingSim(Simulation):
 
     must define reset(), next(action), is_terminal() and step(action).
     See MDPSimulation for examples of these.
+    
+    Based on Example 11.1 of Sutton and Barto's book [SB12].
     """
-    def __init__(self, num_servers, p, queue_length):
+    def __init__(self, num_servers, p, queue_length=2):
         """
         parameters
         ----------
@@ -21,8 +26,8 @@ class SimpleQueuingSim(Simulation):
         self.p = p
         # queue is an array of priority indices 0, 1, 2, 3
         # (priority values are 1,2,4,8 from Sutton)
-        # we don't actually need to model the queue itself for Sutton and
-        # Barto's example but I have included it to help you think about
+        # We don't actually need to model the queue itself for Sutton and
+        # Barto's example but I have included it to help think about
         # extensions
         self.queue_length = queue_length
         self.priority_values = np.array([1,2,4,8])
@@ -91,6 +96,34 @@ class SimpleQueuingSim(Simulation):
 
     def is_terminal(self):
         return False
+        
+    def display_policy(self, functional_policy):
+        """
+        A model specific policy visualisation function. 
+        
+        parameters
+        ----------
+        functional_policy
+        """
+        policy_grid = np.zeros((self.num_servers+1, len(self.priority_values)))
+        print("policy_grid.shape = %r" % (policy_grid.shape,) )
+        index_lookup = {}
+        for i, priority in enumerate(self.priority_values):
+            index_lookup[priority] = i
+        for s, (servers_busy, priority) in enumerate(self.state_names):
+            index = index_lookup[priority]
+            policy_grid[servers_busy, index] = functional_policy[s]
+        # create discrete colormap
+        cmap = colors.ListedColormap(['green', 'red'])
+        bounds = [0,0.5,1]
+        norm = colors.BoundaryNorm(bounds, cmap.N)
+        fig, ax = plt.subplots()
+        ax.imshow(policy_grid, cmap=cmap, norm=norm)
+        ax.set_yticks(np.arange(self.num_servers+1))
+        ax.set_yticklabels(np.arange(self.num_servers+1))
+        ax.set_xticks(np.arange(len(self.priority_values)))
+        ax.set_xticklabels(self.priority_values)
+        
 
 
 class SimpleQueuingSimFeatures(SimpleQueuingSim):
